@@ -3,7 +3,7 @@ import { createSwitchNavigator, createStackNavigator, createAppContainer } from 
 // Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen
 // goes here.
 
-const AppStack = createStackNavigator({ Home: HomeScreen, Other: OtherScreen });
+const AppStack = createStackNavigator({ Home: SignInScreen, Other: HomeScreen });
 const AuthStack = createStackNavigator({ SignIn: SignInScreen });
 
 export default createAppContainer(createSwitchNavigator(

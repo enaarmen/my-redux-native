@@ -9,8 +9,13 @@ import {
   TextInput,
   Button,
 } from 'react-native';
+import { navigation, navigate } from 'react-navigation';
+//import App from '../App';
 
 export default class SignInScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Please sign in',
+  };
   constructor(props) {
     super(props);
     this.setname = false;
@@ -18,13 +23,15 @@ export default class SignInScreen extends React.Component {
     this.setpass = false;
     this.pass = '';
   }
-    static navigationOptions = {
-      title: 'Please sign in',
+
+    _signInAsync = async (name, token) => {
+      await AsyncStorage.setItem(token, name);
+      this.props.navigation.navigate('HomeScreen');
     };
 
-    _signInAsync = async () => {
-      await AsyncStorage.setItem('token', 'name');
-      this.props.navigation.navigate('loading');
+    _signOutAsync = async () => {
+      await AsyncStorage.clear();
+      this.props.navigation.navigate('App');
     };
   
     render() {
@@ -34,18 +41,21 @@ export default class SignInScreen extends React.Component {
           <Text>enter login and password</Text>
           <TextInput style={{borderColor: 'red', borderWidth: 10}} onChangeText={(text) => this.name = text} onEndEditing={() => {this.name == '' ? this.setname = false : this.setname = true}} />
           <TextInput style={{borderColor: 'red', borderWidth: 10}} onChangeText={(text) => this.pass = text} onEndEditing={() => {this.pass == '' ? this.setpass = false : this.setpass = true}} />
-          <Button title="press to log in!" onPress={() => {(this.setpass && this.setname) ? this.setState({name: this.name, password: this.pass}) : <SignInScreen/>}} />
+          <Button title="press to log in!" onPress={() => {(this.setpass && this.setname) ? this.setState({name: this.name, password: this.pass}) : null}} />
         </View>
       );
       } else {
           return (
           <View style={styles.container}>
             <Button style={{borderColor: 'red', borderWidth: 10}} title="Sign in!" onPress={() => {this._signInAsync(this.name, this.pass)}} />
+            <Button style={{borderColor: 'red', borderWidth: 10}} title="Go back!" onPress={() => {this.props.navigation.goBack()}} />
           </View>
         );
       }
     }
   }
+
+  //{this.setpass = false; this.setname = false; this.name = ''; this.pass = ''}
   
   class HomeScreen extends React.Component {
     constructor(props) {
@@ -62,7 +72,7 @@ export default class SignInScreen extends React.Component {
   
     _signOutAsync = async () => {
       await AsyncStorage.clear();
-      this.props.navigation.navigate('Auth');
+      this.props.navigation.navigate('SignInScreen');
     };
   
     render() {

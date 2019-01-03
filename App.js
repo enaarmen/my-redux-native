@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import SignInScreen from './components/signInScreen';
+import AuthLoadingScreen from './components/loading';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-          <SignInScreen />
+          <AuthLoadingScreen navigation={this.props.navigation}/>
       </View>
     );
   }

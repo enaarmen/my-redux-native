@@ -6,6 +6,12 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import {
+  WithNavigation,
+  navigation,
+  navigate
+} from 'react-navigation';
+import SignInScreen from './signInScreen';
 
 export default class AuthLoadingScreen extends React.Component {
   constructor(props) {
@@ -26,6 +32,7 @@ export default class AuthLoadingScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <SignInScreen navigation={this.props.navigation} />
         <ActivityIndicator />
         <StatusBar barStyle="default" />
       </View>
