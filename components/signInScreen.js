@@ -5,25 +5,42 @@ import {
   StatusBar,
   StyleSheet,
   View,
+  Text,
+  TextInput,
   Button,
 } from 'react-native';
 
 export default class SignInScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.setname = false;
+    this.name = '';
+    this.setpass = false;
+    this.pass = '';
+  }
     static navigationOptions = {
       title: 'Please sign in',
     };
 
-    _signInAsync = async () => { // ici mettre en parametre token et name
+    _signInAsync = async () => {
       await AsyncStorage.setItem('token', 'name');
       this.props.navigation.navigate('loading');
     };
   
     render() {
+      if (!this.setname || !this.setpass) {
       return (
         <View style={styles.container}>
-          <Button title="Sign in!" onPress={this._signInAsync} />
-        </View>
+          <Text>enter login</Text>
+          <TextInput onChangeText={(text) => this.name = text} onEndEditing={this.name == '' ? this.setname = false : this.setname = true} />
+          <TextInput onChangeText={(text) => this.name = text} onEndEditing={this.pass == '' ? this.setpass = false : this.setpass = true} />
+          </View>
       );
+      } else {
+        <View style={styles.container}>
+          <Button title="Sign in!" onPress={() => {this._signInAsync(this.name, this.pass)}} />
+        </View>
+      }
     }
   }
   
