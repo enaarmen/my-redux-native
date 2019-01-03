@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 
-class AuthLoadingScreen extends React.Component {
+export default class AuthLoadingScreen extends React.Component {
   constructor(props) {
     super(props);
     this._bootstrapAsync();
@@ -32,3 +32,12 @@ class AuthLoadingScreen extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

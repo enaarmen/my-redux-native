@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import HomeScreen from './components/signInScreen.js';
+import SignInScreen from './components/signInScreen';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-          <HomeScreen />
+          <SignInScreen />
       </View>
     );
   }
