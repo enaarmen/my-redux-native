@@ -32,8 +32,8 @@ export default class AuthLoadingScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <SignInScreen navigation={this.props.navigation} />
         <ActivityIndicator />
+        <SignInScreen navigation={this.props.navigation} />
         <StatusBar barStyle="default" />
       </View>
     );

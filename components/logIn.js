@@ -1,3 +1,4 @@
+import { SignInScreen, HomeScreen } from './signInScreen';
 import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 
 // Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen

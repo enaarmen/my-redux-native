@@ -9,7 +9,7 @@ import {
   TextInput,
   Button,
 } from 'react-native';
-import { navigation, navigate } from 'react-navigation';
+import { navigate } from 'react-navigation';
 //import App from '../App';
 
 export default class SignInScreen extends React.Component {
@@ -47,8 +47,8 @@ export default class SignInScreen extends React.Component {
       } else {
           return (
           <View style={styles.container}>
-            <Button style={{borderColor: 'red', borderWidth: 10}} title="Sign in!" onPress={() => {this._signInAsync(this.name, this.pass)}} />
-            <Button style={{borderColor: 'red', borderWidth: 10}} title="Go back!" onPress={() => {this.props.navigation.goBack()}} />
+            <Button style={{borderColor: 'red', borderWidth: 2}} title="Sign in!" onPress={() => {() => {this._signInAsync(this.name, this.pass)}}} />
+            <Button style={{borderColor: 'red', borderWidth: 2}} title="Go back!" onPress={() => {() => {this.props.navigation.goBack()}}} />
           </View>
         );
       }

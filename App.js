@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import AuthLoadingScreen from './components/loading';
+import { withNavigation } from 'react-navigation';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-          <AuthLoadingScreen navigation={this.props.navigation}/>
+          <AuthLoadingScreen navigation={withNavigation}/>
       </View>
     );
   }
