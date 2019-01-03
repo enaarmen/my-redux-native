@@ -31,15 +31,18 @@ export default class SignInScreen extends React.Component {
       if (!this.setname || !this.setpass) {
       return (
         <View style={styles.container}>
-          <Text>enter login</Text>
-          <TextInput onChangeText={(text) => this.name = text} onEndEditing={this.name == '' ? this.setname = false : this.setname = true} />
-          <TextInput onChangeText={(text) => this.name = text} onEndEditing={this.pass == '' ? this.setpass = false : this.setpass = true} />
-          </View>
+          <Text>enter login and password</Text>
+          <TextInput style={{borderColor: 'red', borderWidth: 10}} onChangeText={(text) => this.name = text} onEndEditing={() => {this.name == '' ? this.setname = false : this.setname = true}} />
+          <TextInput style={{borderColor: 'red', borderWidth: 10}} onChangeText={(text) => this.pass = text} onEndEditing={() => {this.pass == '' ? this.setpass = false : this.setpass = true}} />
+          <Button title="press to log in!" onPress={() => {(this.setpass && this.setname) ? this.setState({name: this.name, password: this.pass}) : <SignInScreen/>}} />
+        </View>
       );
       } else {
-        <View style={styles.container}>
-          <Button title="Sign in!" onPress={() => {this._signInAsync(this.name, this.pass)}} />
-        </View>
+          return (
+          <View style={styles.container}>
+            <Button style={{borderColor: 'red', borderWidth: 10}} title="Sign in!" onPress={() => {this._signInAsync(this.name, this.pass)}} />
+          </View>
+        );
       }
     }
   }
